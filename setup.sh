@@ -8,7 +8,7 @@ else
   # Append rather than replace
   echo '. ~/scripts/.bashrc' >> ~/.bashrc
   echo 'Appended to .bashrc'
-  . ~/.bashrc
+  source ~/.bashrc
 fi
 
 # Sym link .vim dir
@@ -62,3 +62,4 @@ else
   echo "[ok] Created ~/.zshrc sym link"
 fi
 
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
