@@ -52,4 +52,13 @@ else
   echo "[ok] Created ~/.psqlrc sym link"
 fi
 
+# Sym link .zshrc
+if [ -L ~/.zshrc ]; then
+  echo "[ok] .zshrc"
+elif [ -e ~/.zshrc ]; then
+  echo "[bad] .zshrc exists!"
+else
+  ln -s ~/scripts/.zshrc ~/.zshrc
+  echo "[ok] Created ~/.zshrc sym link"
+fi
 
