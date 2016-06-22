@@ -1,5 +1,7 @@
 #!/bin/sh -e
 
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
 # Install .bashrc
 if grep 'scripts/.bashrc' ~/.bashrc
 then
@@ -41,6 +43,15 @@ else
   echo "[ok] Created ~/.gitconfig sym link"
 fi
 
+# Sym link .gitconfig
+if [ -L ~/.gitignore_global ]; then
+  echo "[ok] .gitignore_global"
+elif [ -e ~/.gitignore_global ]; then
+  echo "[bad] .gitignore_global exists!"
+else
+  ln -s ~/scripts/.gitignore_global ~/.gitignore_global
+  echo "[ok] Created ~/.gitignore_global sym link"
+fi
 
 # Sym link .psqlrc
 if [ -L ~/.psqlrc ]; then
@@ -62,4 +73,3 @@ else
   echo "[ok] Created ~/.zshrc sym link"
 fi
 
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"

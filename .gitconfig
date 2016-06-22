@@ -1,15 +1,16 @@
 [user]
-	name = Brendan Heywood
-	email = brendan@catalyst-au.net
+	name = David Binney
+	email = d.binney@cqu.edu.au
 
 [color]
 	diff = auto
 	ui = true
 
 [core]
-	editor = vim
 	autocrlf = input
 	compression = 0
+    excludesfile = /Users/binneyd/.gitignore_global
+
 
     # Speed up on most systems that support mtime
     untrackedCache = true
@@ -76,6 +77,11 @@
 
     remote-all = git-remote-all
 
+    remove-all = !git rm $(git ls-files --deleted)
+    pull-upstream = !"git fetch origin -v; git fetch upstream -v; git merge upstream/master"
+    submodule-branches = "submodule foreach --quiet 'echo \"$(git rev-parse --abbrev-ref HEAD)    => $name\"'"
+    permission-reset = !git diff -p -R | grep -E \"^(diff|(old|new) mode)\" | git apply
+
 [status]
 #    submodulesummary = 1
 
@@ -97,4 +103,19 @@
 
 [help]
     autocorrect = 1
+
+[merge]
+  tool = araxis
+[mergetool "araxis"]
+    path = /Users/binneyd/bin/compare
+[difftool "araxis"]
+    path = /Users/binneyd/bin/compare
+[status]
+    submoduleSummary = true
+[difftool "sourcetree"]
+    cmd = /Applications/SourceTree.app/Contents/Resources/araxiscompare-w.sh -2 \"$LOCAL\" \"$REMOTE\"
+    path =
+[mergetool "sourcetree"]
+    cmd = /Applications/SourceTree.app/Contents/Resources/araxisgitmerge-w.sh \"$REMOTE\" \"$BASE\" \"$LOCAL\" \"$MERGED\"
+    trustExitCode = true
 
