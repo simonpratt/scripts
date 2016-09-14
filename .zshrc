@@ -1,8 +1,7 @@
-# Path to your oh-my-zsh installation.
-
 homedir=~
 eval homedir=$homedir
 
+# Path to your oh-my-zsh installation.
 export ZSH=$homedir/.oh-my-zsh
 #export LANG=en_AU.utf8
 
@@ -56,17 +55,13 @@ HYPHEN_INSENSITIVE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(cake git sublime osx git-flow git-extras npm node theme web-search battery brew osx sublime)
+plugins=(cake git sublime osx git-flow git-extras npm node theme web-search battery brew osx sublime docker)
 # User configuration
 
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
-
-if [ -f "$FILE" ]; then
-   source ~/.creds
-fi
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -96,6 +91,8 @@ fi
 export TERM=xterm-256color
 export PATH=$PATH
 
+alias vi=vim
+
 alias pgp="/usr/local/Cellar/postgresql/9.4.4/bin/pg_ctl -m fast -D /usr/local/var/postgres stop"
 alias pgs="/usr/local/Cellar/postgresql/9.4.4/bin/pg_ctl -D /usr/local/var/postgres start"
 alias pgr="/usr/local/Cellar/postgresql/9.4.4/bin/pg_ctl -m fast -D /usr/local/var/postgres restart"
@@ -109,6 +106,11 @@ export PATH=$PATH:/opt/chefdk/bin
 export PATH=$PATH:/usr/local/Cellar/php56/5.6.19/bin
 export HISTCONTROL=ignoredups
 
+if [ -f "$FILE" ]; then
+   source ~/.creds
+else
+	echo '[bad]' . no file
+fi
 export AWS_CREDENTIAL_FILE="$homedir/.aws/credentials"
 export EC2_URL=https://ec2.ap-southeast-2.amazonaws.com
 
@@ -117,62 +119,18 @@ test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_in
 
 
 ###docker stuff
-export DOCKER_CERT_PATH=$homedir/.docker/machine/machines/default
-export DOCKER_HOST=tcp://192.168.99.100:2376
-export DOCKER_TLS_VERIFY=1
-export RESOURCES_PATH="/Applications/Docker/Kitematic (Beta).app/Contents/Resources/resources"
-export PWD=$homedir/mywork/docker/apache
-export NODE_PATH="/Applications/Docker/Kitematic (Beta).app/Contents/Resources/app.asar/node_modules"
-export OLDPWD=$homedir/mywork/docker/apache
+
+alias dc='docker rm -v $(docker ps -a -q -f status=exited) & docker rmi $(docker images -f '\''dangling=true'\'' -q)'
+
+#export DOCKER_CERT_PATH=$homedir/.docker/machine/machines/default
+#export DOCKER_HOST=tcp://192.168.99.100:2376
+#export DOCKER_TLS_VERIFY=1
+#export RESOURCES_PATH="/Applications/Docker/Kitematic (Beta).app/Contents/Resources/resources"
+#export PWD=$homedir/mywork/docker/apache
+#export NODE_PATH="/Applications/Docker/Kitematic (Beta).app/Contents/Resources/app.asar/#node_modules"
+#export OLDPWD=$homedir/mywork/docker/apache
 
 
-alias mdl-data='. real-mdl-data'
-alias mdl-code='. real-mdl-code'
-alias mdl-open='. real-mdl-open'
-
-
-alias l='ls -CFa'
-
-alias o='xdg-open'
-
-alias grep='grep --color=auto'
-
-export PATH="$PATH:$HOME/scripts/"
-#export PATH="$PATH:$HOME/moosh/bin"
-#eval "$(/home/brendan/moosh/bin/moosh init -)"
-
-export DEBFULLNAME='Brendan Heywood'
-export DEBEMAIL='brendan@catalyst.net.nz'
-
-# This add magic, like cd'ing to a remote dir on login :)
-alias ssh='~/scripts/ssh'
-
-# I always seem to type this!
-alias cd..='cd ..'
-
-export LESS="-riMSx4 -FX --shift .1"
-# -r  show raw control chars (so colors work)
-# -i  ignore case
-# -M  verbose prompt
-# -S  chop long lines
-# -x4 tabs stop at 4
-# -F  quit if one screen
-# -X  disable screen clear
-# --shift .1 left and right move 10% of screen
-#
-
-# If a command you run returns a fail, it isn't available when you press 'up' which is real pain
-# in the arse when you are re-running things consstantly that fail, like a unit test. This fixes
-# that so all commands go into the history
-# HISTCONTROL=ignoreboth
-
-# This is pure gold! (actually I thought it was, but it turns out to fairly impractical and I keep on
-# accidentally cd'ing to some random place, or worse I tab auto complete when I know there is a single
-# directory, and it doesn't autocomplete because it's searching other directories. So I've commented out
-# but left in as a cautionary tale:
-# Add your 'projects' or whatever folder to CDPATH enables you to 'cd <tab-autocomplete>' to it from anywhere
-#   export CDPATH=".:/var/www/"
-export CDPATH="."
 
 
 # Disable globbing on the remote path.
@@ -186,5 +144,3 @@ function scp_wrap {
   esac; done
   command scp "${(@)args}"
 }
-
-
