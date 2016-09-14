@@ -1,6 +1,13 @@
 #!/bin/sh -e
 
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+homedir=~
+eval homedir=$homedir
+
+if [ -d "$homedir/.oh-my-zsh" ]; then
+    echo '[ok] .oh-my-zsh'
+else
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+fi
 
 # Install .bashrc
 if grep 'scripts/.bashrc' ~/.bashrc
