@@ -1,5 +1,9 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/binneyd/.oh-my-zsh
+
+homedir=~
+eval homedir=$homedir
+
+export ZSH=$homedir/.oh-my-zsh
 #export LANG=en_AU.utf8
 
 # Set name of the theme to load.
@@ -59,7 +63,10 @@ export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
-source ~/.creds
+
+if [ -f "$FILE" ]; then
+   source ~/.creds
+fi
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -102,21 +109,21 @@ export PATH=$PATH:/opt/chefdk/bin
 export PATH=$PATH:/usr/local/Cellar/php56/5.6.19/bin
 export HISTCONTROL=ignoredups
 
-export AWS_CREDENTIAL_FILE="/Users/binneyd/.aws/credentials"
+export AWS_CREDENTIAL_FILE="$homedir/.aws/credentials"
 export EC2_URL=https://ec2.ap-southeast-2.amazonaws.com
 
-source /usr/local/share/zsh/site-functions/_aws
+#source /usr/local/share/zsh/site-functions/_aws
 test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
 
 
 ###docker stuff
-export DOCKER_CERT_PATH=/Users/binneyd/.docker/machine/machines/default
+export DOCKER_CERT_PATH=$homedir/.docker/machine/machines/default
 export DOCKER_HOST=tcp://192.168.99.100:2376
 export DOCKER_TLS_VERIFY=1
 export RESOURCES_PATH="/Applications/Docker/Kitematic (Beta).app/Contents/Resources/resources"
-export PWD=/Users/binneyd/mywork/docker/apache
+export PWD=$homedir/mywork/docker/apache
 export NODE_PATH="/Applications/Docker/Kitematic (Beta).app/Contents/Resources/app.asar/node_modules"
-export OLDPWD=/Users/binneyd/mywork/docker/apache
+export OLDPWD=$homedir/mywork/docker/apache
 
 
 alias mdl-data='. real-mdl-data'
@@ -131,8 +138,8 @@ alias o='xdg-open'
 alias grep='grep --color=auto'
 
 export PATH="$PATH:$HOME/scripts/"
-export PATH="$PATH:$HOME/moosh/bin"
-eval "$(/home/brendan/moosh/bin/moosh init -)"
+#export PATH="$PATH:$HOME/moosh/bin"
+#eval "$(/home/brendan/moosh/bin/moosh init -)"
 
 export DEBFULLNAME='Brendan Heywood'
 export DEBEMAIL='brendan@catalyst.net.nz'

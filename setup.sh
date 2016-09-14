@@ -25,6 +25,9 @@ if [ -L ~/.vim ]; then
   echo "[ok] .vim"
 elif [ -e ~/.vim ]; then
   echo "[bad] .vim exists!"
+  rm -rf ~/.vim
+  ln -s ~/scripts/.vim ~/.vim
+  echo "[ok] Created .vim/ sym link"
 else
   ln -s ~/scripts/.vim ~/.vim
   echo "[ok] Created .vim/ sym link"
@@ -35,6 +38,10 @@ if [ -L ~/.vimrc ]; then
   echo "[ok] .vimrc"
 elif [ -e ~/.vimrc ]; then
   echo "[bad] .vimrc exists!"
+  
+  rm ~/.vimrc
+  ln -s ~/scripts/.vimrc ~/.vimrc
+  echo "[ok] Created .vimrc sym link"
 else
   ln -s ~/scripts/.vimrc ~/.vimrc
   echo "[ok] Created .vimrc sym link"
@@ -45,6 +52,10 @@ if [ -L ~/.gitconfig ]; then
   echo "[ok] .gitconfig"
 elif [ -e ~/.gitconfig ]; then
   echo "[bad] .gitconfig exists!"
+  
+  rm ~/.gitconfig
+  ln -s ~/scripts/.gitconfig ~/.gitconfig
+  echo "[ok] Created ~/.gitconfig sym link"
 else
   ln -s ~/scripts/.gitconfig ~/.gitconfig
   echo "[ok] Created ~/.gitconfig sym link"
@@ -55,6 +66,10 @@ if [ -L ~/.gitignore_global ]; then
   echo "[ok] .gitignore_global"
 elif [ -e ~/.gitignore_global ]; then
   echo "[bad] .gitignore_global exists!"
+
+  rm ~/.gitignore_global
+  ln -s ~/scripts/.gitignore_global ~/.gitignore_global
+  echo "[ok] Created ~/.gitignore_global sym link"
 else
   ln -s ~/scripts/.gitignore_global ~/.gitignore_global
   echo "[ok] Created ~/.gitignore_global sym link"
@@ -65,6 +80,10 @@ if [ -L ~/.psqlrc ]; then
   echo "[ok] .psqlrc"
 elif [ -e ~/.psqlrc ]; then
   echo "[bad] .psqlrc exists!"
+
+  rm ~/.psqlrc
+  ln -s ~/scripts/.psqlrc ~/.psqlrc
+  echo "[ok] Created ~/.psqlrc sym link"
 else
   ln -s ~/scripts/.psqlrc ~/.psqlrc
   echo "[ok] Created ~/.psqlrc sym link"
