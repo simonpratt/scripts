@@ -9,6 +9,8 @@ else
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 fi
 
+cd scripts; git pull --rebase --prune $@ && git submodule update --init --recursive;
+
 # Install .bashrc
 if grep 'scripts/.bashrc' ~/.bashrc
 then
