@@ -1,24 +1,20 @@
-homedir=~
-eval homedir=$homedir
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=$homedir/.oh-my-zsh
-#export LANG=en_AU.utf8
+export ZSH=/Users/dbinney/.oh-my-zsh
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-#ZSH_THEME="agnoster"
-ZSH_THEME="amuse"
-ZSH_THEME="ys"
+# Set name of the theme to load. Optionally, if you set this to "random"
+# it'll load a random theme each time that oh-my-zsh is loaded.
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+ZSH_THEME="bureau"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
 # Uncomment the following line to use hyphen-insensitive completion. Case
 # sensitive completion must be off. _ and - will be interchangeable.
-HYPHEN_INSENSITIVE="true"
+# HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
@@ -55,13 +51,13 @@ HYPHEN_INSENSITIVE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(cake git sublime osx git-flow git-extras npm node theme web-search battery brew osx sublime docker)
-# User configuration
-
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-# export MANPATH="/usr/local/man:$MANPATH"
+plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
+
+# User configuration
+
+# export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -77,7 +73,7 @@ source $ZSH/oh-my-zsh.sh
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
+# export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -87,60 +83,15 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+export ANSIBLE_HOST_KEY_CHECKING=False
 
-export TERM=xterm-256color
-export PATH=$PATH
-
-alias vi=vim
-
-alias pgp="/usr/local/Cellar/postgresql/9.4.4/bin/pg_ctl -m fast -D /usr/local/var/postgres stop"
-alias pgs="/usr/local/Cellar/postgresql/9.4.4/bin/pg_ctl -D /usr/local/var/postgres start"
-alias pgr="/usr/local/Cellar/postgresql/9.4.4/bin/pg_ctl -m fast -D /usr/local/var/postgres restart"
+export GOPATH=/home/dbinney/go
+export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:$GOPATH/bin
+export GOBIN=$GOPATH/bin
 
 export PATH="/usr/local/sbin:$PATH"
-export PATH="/usr/local/sbin:$PATH"
-alias updatedb='sudo /usr/libexec/locate.updatedb'
-export PATH=$PATH:/Applications/Araxis\ Merge.app/Contents/Utilities
 
-export PATH=$PATH:/opt/chefdk/bin
-export PATH=$PATH:/usr/local/Cellar/php56/5.6.19/bin
-export HISTCONTROL=ignoredups
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-if [ -f "$FILE" ]; then
-   source ~/.creds
-else
-	echo '[bad]' . no file
-fi
-export AWS_CREDENTIAL_FILE="$homedir/.aws/credentials"
-export EC2_URL=https://ec2.ap-southeast-2.amazonaws.com
-
-#source /usr/local/share/zsh/site-functions/_aws
-test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
-
-
-###docker stuff
-
-alias dc='docker rm -v $(docker ps -a -q -f status=exited) & docker rmi $(docker images -f '\''dangling=true'\'' -q)'
-
-#export DOCKER_CERT_PATH=$homedir/.docker/machine/machines/default
-#export DOCKER_HOST=tcp://192.168.99.100:2376
-#export DOCKER_TLS_VERIFY=1
-#export RESOURCES_PATH="/Applications/Docker/Kitematic (Beta).app/Contents/Resources/resources"
-#export PWD=$homedir/mywork/docker/apache
-#export NODE_PATH="/Applications/Docker/Kitematic (Beta).app/Contents/Resources/app.asar/#node_modules"
-#export OLDPWD=$homedir/mywork/docker/apache
-
-
-
-
-# Disable globbing on the remote path.
-alias scp='noglob scp_wrap'
-function scp_wrap {
-  local -a args
-  local i
-  for i in "$@"; do case $i in
-    (*:*) args+=($i) ;;
-    (*) args+=(${~i}) ;;
-  esac; done
-  command scp "${(@)args}"
-}
+alias get_dns="cat ~/mywork/dnszones/netspot.com.au | sort -nd | grep AAAA | grep -v ';'"

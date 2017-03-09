@@ -1,6 +1,6 @@
 [user]
 	name = David Binney
-	email = d.binney@cqu.edu.au
+	email = david.binney@blackboard.com
 
 [color]
 	diff = auto
@@ -9,11 +9,12 @@
 [core]
 	autocrlf = input
 	compression = 0
-    excludesfile = /Users/binneyd/.gitignore_global
+	excludesfile = /Users/dbinney/.gitignore_global
 
 
     # Speed up on most systems that support mtime
     untrackedCache = true
+	editor = /usr/bin/vim
 
 [alias]
 
@@ -113,9 +114,9 @@
 [status]
     submoduleSummary = true
 [difftool "sourcetree"]
-    cmd = /Applications/SourceTree.app/Contents/Resources/araxiscompare-w.sh -2 \"$LOCAL\" \"$REMOTE\"
-    path =
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
 [mergetool "sourcetree"]
-    cmd = /Applications/SourceTree.app/Contents/Resources/araxisgitmerge-w.sh \"$REMOTE\" \"$BASE\" \"$LOCAL\" \"$MERGED\"
-    trustExitCode = true
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
 
