@@ -28,7 +28,7 @@ if [ -L ~/bin/diff-highlight ]; then
 elif [ -e ~/.vim ]; then
   echo "[bad] diff-highlight exists!"
   rm -rf ~/bin/diff-highlight
-  ln -s ~/scripts/.diff-highlight ~/bin/diff-highlight
+  ln -s ~/scripts/diff-highlight ~/bin/diff-highlight
   echo "[ok] Created diff-highlight/ sym link"
 else
   ln -s ~/scripts/diff-highlight ~/bin/diff-highlight
