@@ -23,6 +23,21 @@ else
 fi
 
 # Sym link .vim dir
+if [ -L ~/bin/diff-highlight ]; then
+  echo "[ok] diff-highlight"
+elif [ -e ~/.vim ]; then
+  echo "[bad] diff-highlight exists!"
+  rm -rf ~/bin/diff-highlight
+  ln -s ~/scripts/.diff-highlight ~/bin/diff-highlight
+  echo "[ok] Created diff-highlight/ sym link"
+else
+  ln -s ~/scripts/diff-highlight ~/bin/diff-highlight
+  echo "[ok] Created diff-highlight sym link"
+fi
+
+
+
+# Sym link .vim dir
 if [ -L ~/.vim ]; then
   echo "[ok] .vim"
 elif [ -e ~/.vim ]; then
