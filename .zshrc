@@ -8,7 +8,7 @@ export ZSH=~/.oh-my-zsh
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="bureau"
-
+#ZSH_THEME="refined"
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -93,7 +93,7 @@ export GOBIN=$GOPATH/bin
 export PATH="/usr/local/sbin:$PATH"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
+alias dc='docker rmi -f $(docker images | grep "<none>" | awk "{print \$3}")'
 alias get_dns="cat ~/mywork/dnszones/netspot.com.au | sort -nd | grep AAAA | grep -v ';'"
 alias get_hosts="cat ~/hosts/all-hosts.dyn"
 
@@ -106,3 +106,6 @@ export PATH=$PATH:~/Library/Python/3.6/bin
 
 #add bin in home to path
 export PATH=$PATH:~/bin
+
+#postgres stuff 
+alias psql='PAGER="less -SF" psql'
