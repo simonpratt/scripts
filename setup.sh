@@ -12,7 +12,7 @@ fi
 cd scripts; git pull --rebase --prune $@ && git submodule update --init --recursive;
 
 # create home bin dir
-if [ -d "~/bin" ]; then
+if [ -d ~/bin ]; then
   echo '[ok] bin exists'
 else
   echo "[bad] creating bin!"
