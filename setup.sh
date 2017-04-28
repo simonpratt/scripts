@@ -31,13 +31,21 @@ else
 fi
 
 # Sym link diff-highlight dir
+if [ -L ~/bin/rmate ]; then
+  echo "[ok] rmate"
+elif [ -e ~/bin/rmate ]; then
+  echo "[bad] rmate exists!"
+else
+  ln -s ~/scripts/rmate ~/bin/rmate
+  echo "[ok] Created rmate sym link"
+fi
+
+
+# Sym link diff-highlight dir
 if [ -L ~/bin/diff-highlight ]; then
   echo "[ok] diff-highlight"
 elif [ -e ~/bin/diff-highlight ]; then
   echo "[bad] diff-highlight exists!"
-  rm -rf ~/bin/diff-highlight
-  ln -s ~/scripts/diff-highlight ~/bin/diff-highlight
-  echo "[ok] Created diff-highlight/ sym link"
 else
   ln -s ~/scripts/diff-highlight ~/bin/diff-highlight
   echo "[ok] Created diff-highlight sym link"
