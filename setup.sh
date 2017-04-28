@@ -11,6 +11,14 @@ fi
 
 cd scripts; git pull --rebase --prune $@ && git submodule update --init --recursive;
 
+# create home bin dir
+if [ -d "~/bin" ]; then
+  echo '[ok] bin exists'
+else
+  echo "[bad] creating bin!"
+  mkdir ~/bin
+fi
+
 # Install .bashrc
 if grep 'scripts/.bashrc' ~/.bashrc
 then
@@ -22,10 +30,10 @@ else
   source ~/.bashrc
 fi
 
-# Sym link .vim dir
+# Sym link diff-highlight dir
 if [ -L ~/bin/diff-highlight ]; then
   echo "[ok] diff-highlight"
-elif [ -e ~/.vim ]; then
+elif [ -e ~/bin/diff-highlight ]; then
   echo "[bad] diff-highlight exists!"
   rm -rf ~/bin/diff-highlight
   ln -s ~/scripts/diff-highlight ~/bin/diff-highlight
