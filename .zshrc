@@ -3,11 +3,14 @@
 
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
+export PATH="/usr/local/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="bureau"
+#ZSH_THEME="muse"
 #ZSH_THEME="refined"
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -90,8 +93,6 @@ export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$GOPATH/bin
 export GOBIN=$GOPATH/bin
 
-export PATH="/usr/local/sbin:$PATH"
-
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 alias dc='docker rmi -f $(docker images | grep "<none>" | awk "{print \$3}")'
 alias get_dns="cat ~/mywork/dnszones/netspot.com.au | sort -nd | grep AAAA | grep -v ';'"
@@ -109,3 +110,9 @@ export PATH=$PATH:~/bin
 
 #postgres stuff 
 alias psql='PAGER="less -SF" psql'
+## was causing a "bad option -t"
+#source <(kubectl completion bash)
+
+#git suff 
+export PATH=$PATH:/Applications/Araxis\ Merge.app/Contents/Utilities
+export PATH="/usr/local/opt/php71/bin:$PATH"

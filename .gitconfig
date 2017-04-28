@@ -105,18 +105,16 @@
 [help]
     autocorrect = 1
 
-[merge]
-  tool = araxis
-[mergetool "araxis"]
-    path = /Users/binneyd/bin/compare
-[difftool "araxis"]
-    path = /Users/binneyd/bin/compare
 [status]
     submoduleSummary = true
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
 
+[diff]
+tool = araxis
+
+[merge]
+tool = araxis
+
+#[mergetool]
+#	bc3 = trustExitCode
+#[merge]
+#	tool = bc3
