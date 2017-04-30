@@ -9,7 +9,9 @@ export PATH="/usr/local/sbin:$PATH"
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="bureau"
+#ZSH_THEME="bureau"
+ZSH_THEME="honukai"
+# ZSH_THEME="yd"
 #ZSH_THEME="muse"
 #ZSH_THEME="refined"
 # Uncomment the following line to use case-sensitive completion.
@@ -35,7 +37,7 @@ ZSH_THEME="bureau"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -54,9 +56,16 @@ ZSH_THEME="bureau"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git colored-man-pages compleat history tmuxinator zsh-autosuggestions)
+
 
 source $ZSH/oh-my-zsh.sh
+
+# export AUTOSUGGESTION_HIGHLIGHT_CURSOR=0
+# complete entire suggestion with right arrow
+# export AUTOSUGGESTION_ACCEPT_RIGHT_ARROW=1
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=black,bold'
+export HIST_IGNORE_ALL_DUPS
 
 # User configuration
 
@@ -86,7 +95,8 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias {ack,ak}='ack-grep'
+alias {ack,ak}='ack'
+alias ack-grep='ack'
 
 
 export ANSIBLE_HOST_KEY_CHECKING=False
