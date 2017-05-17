@@ -11,6 +11,10 @@ $hosts = array(
 			"requiredAND" => [],
 			"childOR"  => []
 		],
+		"all-postgres" => [
+			"requiredAND" => ["-pgsql"],
+			"childOR"  => []
+		],
 		"production-load-balancers" => [
 			"requiredAND" => ["-prod-"],
 			"childOR"  => ["-lb-"]

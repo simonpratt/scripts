@@ -129,3 +129,11 @@ alias psql='PAGER="less -SF" psql'
 #git suff 
 export PATH=$PATH:/Applications/Araxis\ Merge.app/Contents/Utilities
 export PATH="/usr/local/opt/php71/bin:$PATH"
+
+#java stuff 
+ export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home"
+ export PATH="$PATH:$JAVA_HOME/bin"
+
+#ssh agent start
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_rsa
