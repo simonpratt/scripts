@@ -108,13 +108,16 @@
 [status]
     submoduleSummary = true
 
-[diff]
-tool = araxis
-
-[merge]
-tool = araxis
-
-#[mergetool]
-#	bc3 = trustExitCode
+#[diff]
+#tool = araxis
+#
 #[merge]
-#	tool = bc3
+#tool = araxis
+
+#beyone compare 
+[mergetool]
+	bc3 = trustExitCode
+[merge]
+	tool = bc3
+[diff]
+    tool = bc3

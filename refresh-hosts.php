@@ -15,6 +15,10 @@ $hosts = array(
 			"requiredAND" => ["-pgsql"],
 			"childOR"  => []
 		],
+		"all-maharaweb" => [
+			"requiredAND" => ["-mhrweb-"],
+			"childOR"  => []
+		],
 		"production-load-balancers" => [
 			"requiredAND" => ["-prod-"],
 			"childOR"  => ["-lb-"]
@@ -22,6 +26,14 @@ $hosts = array(
 		"production-webservers" => [
 			"requiredAND"  => ["-prod-"],
 			"childOR"   => ["-mdlweb-","-mdlutil"]
+		],
+		"production-mahara-webservers" => [
+			"requiredAND"  => ["-mhrweb-","-prod-"],
+			"childOR"   => []
+		],
+		"production-reverse-proxy" => [
+			"requiredAND"  => ["-rp-prod-"],
+			"childOR"   => []
 		],
 		"production-cloudstore" => [
 			"requiredAND"  => ["-prod-"],
