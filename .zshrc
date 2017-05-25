@@ -135,5 +135,7 @@ export PATH="/usr/local/opt/php71/bin:$PATH"
  export PATH="$PATH:$JAVA_HOME/bin"
 
 #ssh agent start
-eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/id_rsa
+if [[ $(hostname -s) =~ dhcp-.* ]]; then
+	eval "$(ssh-agent -s)"
+	ssh-add ~/.ssh/id_rsa
+fi
