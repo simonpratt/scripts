@@ -97,7 +97,7 @@ if (!file_exists($hostBasePath)) {
 
 if(! isCacheValid($cacheFile)) {
 	cacheForemanData($cacheFile, $credentials);
-} 
+}
 
 
 $foremanData    = getForemanData($cacheFile);
@@ -115,7 +115,7 @@ generateFlatHostFiles($fileExt, $hostBasePath, $foremanResults, $hosts);
 function formatHostBlock($foremanData, $blockName, $filterConditionsAND = array(), $filterConditionsOR = array(), $withHeader = true){
 
 	$blockText = array();
-	
+
 	if($withHeader) {
 		$blockText[] = "[$blockName]";
 	}
@@ -128,11 +128,11 @@ function formatHostBlock($foremanData, $blockName, $filterConditionsAND = array(
 	foreach($filterConditionsOR as $filter) {
 		$stringOR .= $filter . "|";
 	}
-	$stringAND =  "/" . rtrim($stringAND,"|") ."/"; 
+	$stringAND =  "/" . rtrim($stringAND,"|") ."/";
 	$stringOR  =  "/" . rtrim($stringOR,"|")  ."/";
 
 	foreach ($foremanData as $server) {
-		
+
 		if ( preg_match($stringAND, $server["name"]) ) {
 
 			if ( preg_match($stringOR, $server["name"]) ) {
@@ -142,7 +142,7 @@ function formatHostBlock($foremanData, $blockName, $filterConditionsAND = array(
 	}
 
 	return $blockText;
-	
+
 }
 
 function generateAnsibleHostFiles($fileExt, $hostBasePath, $foremanResults, $hosts ) {
@@ -150,16 +150,16 @@ function generateAnsibleHostFiles($fileExt, $hostBasePath, $foremanResults, $hos
 	$filename = $hostBasePath . "ansible" . $fileExt;
 
 	$fileHandle = fopen($filename, "w+") or die("Unable to open file!");
-	
+
 	echo "ansible processing\n";
 	foreach ($hosts as $key => $value) {
-		
+
 		if ($key === reset($hosts)) {
 			echo ".. $key\n" ;
 			fwrite($fileHandle, "[$key]" . "\n");
-			
+
 		}
-		
+
 
 		$block = formatHostBlock($foremanResults, $key, $value["requiredAND"], $value["childOR"] );
 		foreach ($block as $line) {
@@ -199,20 +199,20 @@ function getForemanData($cacheFile) {
 
 
 function isCacheValid($cacheFile) {
-	
+
 	if (file_exists($cacheFile)) {
 		$ftime = filemtime($cacheFile);
 		$cacheTime = time() - (60 * 30); //30 min cache
 
 	    echo "$cacheFile was last modified: " . date ("F d Y H:i:s.", $ftime) . "\n";
-	    
+
 	    if( $cacheTime >= filemtime($cacheFile) ) {
 	    	return false;
 	    } else {
 	    	return true;
 	    }
 
-	    // echo date("F d Y H:i:s.", $ftime) . "\n"; 
+	    // echo date("F d Y H:i:s.", $ftime) . "\n";
 
 	} else {
 		return false;
@@ -226,7 +226,7 @@ function cacheForemanData($cacheFile, $credentials) {
 	$foremanJson = curlForemanHosts($credentials);
 
 	$fileHandle = fopen($cacheFile, "w") or die("Unable to open file!");
-	
+
 	fwrite($fileHandle, $foremanJson);
 	fclose($fileHandle);
 
@@ -242,11 +242,11 @@ function curlForemanHosts($credentials) {
 		"per_page" => "9999999",
 		// "search" => "status.enabled"
 	);
-	        
+
 	$params = '';
 	foreach($data as $key=>$value)
 	       $params .= $key.'='.$value.'&';
-	     
+
 	$params = trim($params, '&');
 
 	$ch = curl_init();
