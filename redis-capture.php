@@ -40,13 +40,7 @@ if(! in_array("$redisRole", ['master', 'slave'] ) ) {
 $filename      = $redisRole . "_" . gethostname() . "__" . $date->getTimestamp() . "__$runtime" . ".gz"; 
 $redisDumpFile = $filename;
 
-
-
 echo "Capture redis logs : length : $runtime sec, filename : $filename\n";
-
-
-echo $filename;
-exit;
 
 $monitor = exec("redis-cli monitor | gzip > ${redisDumpFile} &");
 
