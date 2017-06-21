@@ -7,8 +7,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 $date     = new DateTime();
-$runtime  = 10; //seconds
-$filename = gethostname() . "__" . $date->getTimestamp() . "__$runtime" . ".gz"; 
+$runtime  = 10; //default to 10 seconds
 
 
 foreach($argv as $argLine) {
@@ -31,12 +30,23 @@ foreach($argv as $argLine) {
 
 }
 
+//barf if the role does not exist.. prob means there is no redis
+$redisRole = exec("redis-cli info | grep role");
+$redisRole = isset(explode(":", $redisRole)[1]) ? explode(":", $redisRole)[1] : '';
+if(! in_array("$redisRole", ['master', 'slave'] ) ) {
+    exit("Error: could not determine redis role : $redisRole");
+}
+
+$filename      = $redisRole . "_" . gethostname() . "__" . $date->getTimestamp() . "__$runtime" . ".gz"; 
+$redisDumpFile = $filename;
+
+
+
 echo "Capture redis logs : length : $runtime sec, filename : $filename\n";
 
 
-
-
-$redisDumpFile = $filename;
+echo $filename;
+exit;
 
 $monitor = exec("redis-cli monitor | gzip > ${redisDumpFile} &");
 
