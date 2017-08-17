@@ -37,7 +37,7 @@ if(! in_array("$redisRole", ['master', 'slave'] ) ) {
     exit("Error: could not determine redis role : $redisRole");
 }
 
-$filename      = $redisRole . "_" . gethostname() . "__" . $date->getTimestamp() . "__$runtime" . ".gz"; 
+$filename      = $redisRole . "__" . gethostname() . "__" . $date->getTimestamp() . "__$runtime" . ".gz"; 
 $redisDumpFile = $filename;
 
 echo "Capture redis logs : length : $runtime sec, filename : $filename\n";

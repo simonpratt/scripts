@@ -113,9 +113,8 @@ alias get_hosts="cat ~/hosts/all-hosts.dyn"
 
 
 ##python force to v3 
-alias python='python3'
+#alias python='python3'
 alias py='python3'
-export PATH=$PATH:/usr/local/bin/
 export PATH=$PATH:~/Library/Python/3.6/bin
 
 #add bin in home to path
@@ -134,8 +133,18 @@ export PATH="/usr/local/opt/php71/bin:$PATH"
  export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home"
  export PATH="$PATH:$JAVA_HOME/bin"
 
+#ruby env stuff
+eval "$(rbenv init -)"
+
 #ssh agent start
 if [[ $(hostname -s) =~ dhcp-.* ]]; then
 	eval "$(ssh-agent -s)"
 	ssh-add ~/.ssh/id_rsa
 fi
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
