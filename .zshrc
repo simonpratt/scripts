@@ -10,8 +10,8 @@ export PATH="/usr/local/sbin:$PATH"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 #ZSH_THEME="bureau"
+ZSH_THEME="minimal"
 #ZSH_THEME="honukai"
-ZSH_THEME="yd"
 #ZSH_THEME="amuse"
 #ZSH_THEME="refined"
 # Uncomment the following line to use case-sensitive completion.
