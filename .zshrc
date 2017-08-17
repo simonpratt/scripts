@@ -137,9 +137,6 @@ if foo --version >/dev/null 2>&1; then
     eval "$(rbenv init -)"
 fi
 
-#ruby env stuff
-eval "$(rbenv init -)"
-
 #ssh agent start
 if [[ $(hostname -s) =~ dhcp-.* ]]; then
 	eval "$(ssh-agent -s)"
