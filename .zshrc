@@ -133,6 +133,10 @@ export PATH="/usr/local/opt/php71/bin:$PATH"
  export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home"
  export PATH="$PATH:$JAVA_HOME/bin"
 
+which rbenv >/dev/null; then
+    eval "$(rbenv init -)"
+fi
+
 #ruby env stuff
 eval "$(rbenv init -)"
 
