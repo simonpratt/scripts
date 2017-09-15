@@ -1,15 +1,12 @@
-#!/bin/sh -e
+#!/bin/bash
+set -e 
 
 homedir=~
 eval homedir=$homedir
-zsh_custom=$homedir/.oh-my-zsh/custom;
 
-
-if [ -d "$homedir/.oh-my-zsh" ]; then
-    echo '[ok] .oh-my-zsh'
-else
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-fi
+#pull clean
+cd scripts && git pull --rebase --prune $@ && git submodule update --init --recursive && cd ..;
+#pull clean
 
 # create home bin dir
 if [ -d ~/bin ]; then
@@ -29,21 +26,6 @@ else
   echo 'Appended to .bashrc'
   source ~/.bashrc
 fi
-
-
-if [ -d $zsh_custom/plugins/zsh-autosuggestions ]; then
-  echo '[ok] zsh-autosuggestions exists'
-  (cd $zsh_custom/plugins/zsh-autosuggestions; git pull-all;)
-else
-  mkdir -p $zsh_custom/plugins/zsh-autosuggestions;
-  echo "[bad] creating folder!"
-  git clone git://github.com/zsh-users/zsh-autosuggestions "$zsh_custom/plugins/zsh-autosuggestions";
-fi
-
-
-cd scripts; git pull --rebase --prune $@ && git submodule update --init --recursive;
-
-
 
 
 # Sym link diff-highlight dir
@@ -148,3 +130,21 @@ else
   echo "[ok] Created ~/.zshrc sym link"
 fi
 
+## setup zsh now --- 
+zsh_custom=$homedir/.oh-my-zsh/custom;
+
+if [ -d "$homedir/.oh-my-zsh" ]; then
+    echo '[ok] .oh-my-zsh'
+else
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+fi
+
+if [ -d $zsh_custom/plugins/zsh-autosuggestions ]; then
+  echo '[ok] zsh-autosuggestions exists'
+  (cd $zsh_custom/plugins/zsh-autosuggestions; git pull-all;)
+else
+  mkdir -p $zsh_custom/plugins/zsh-autosuggestions;
+  echo "[bad] creating folder!"
+  git clone git://github.com/zsh-users/zsh-autosuggestions "$zsh_custom/plugins/zsh-autosuggestions";
+  (cd $zsh_custom/plugins/zsh-autosuggestions; git pull-all;)
+fi
