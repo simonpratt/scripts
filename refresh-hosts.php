@@ -1,3 +1,4 @@
+#!/usr/bin/env php
 <?php
 
 error_reporting(-1);
@@ -23,7 +24,7 @@ $hosts = array(
 			"requiredAND" => ["-prod-"],
 			"childOR"  => ["-lb-"]
 		],
-		"production-webservers" => [
+		"production-moodle-webservers" => [
 			"requiredAND"  => ["-prod-"],
 			"childOR"   => ["-mdlweb-","-mdlutil"]
 		],
@@ -51,8 +52,12 @@ $hosts = array(
 			"requiredAND"  => ["-stage-"],
 			"childOR"   => ["-mdlweb-","-mdlutil"]
 		],
+		"test-moodle-webservers" => [
+			"requiredAND"  => ["-test-"],
+			"childOR"   => ["-mdlweb-","-mdlutil"]
+		],
 		"loadtest-cloudstore" => [
-			"requiredAND"  => ["-test-","-adl"],
+			"requiredAND"  => ["cloudstore","perf"],
 			"childOR"   => ["-cloudstore-"]
 		],
 		"loadtest-reverse-proxy" => [

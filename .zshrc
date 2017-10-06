@@ -15,7 +15,7 @@ ZSH_THEME="bureau"
 
 # Uncomment the following line to use hyphen-insensitive completion. Case
 # sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
@@ -97,10 +97,10 @@ alias ack-grep='ack'
 
 export ANSIBLE_HOST_KEY_CHECKING=False
 
-export GOPATH=/home/dbinney/go
+export GOPATH=~/go
+export GOBIN=""
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$GOPATH/bin
-export GOBIN=$GOPATH/bin
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 alias dc='docker rmi -f $(docker images | grep "<none>" | awk "{print \$3}")'
