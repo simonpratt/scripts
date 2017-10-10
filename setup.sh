@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e 
+set -e
 
 homedir=~
 eval homedir=$homedir
@@ -25,17 +25,6 @@ else
   echo '. ~/scripts/.bashrc' >> ~/.bashrc
   echo 'Appended to .bashrc'
   source ~/.bashrc
-fi
-
-
-# Sym link diff-highlight dir
-if [ -L ~/bin/rmate ]; then
-  echo "[ok] rmate"
-elif [ -e ~/bin/rmate ]; then
-  echo "[bad] rmate exists!"
-else
-  ln -s ~/scripts/rmate ~/bin/rmate
-  echo "[ok] Created rmate sym link"
 fi
 
 
@@ -69,7 +58,7 @@ if [ -L ~/.vimrc ]; then
   echo "[ok] .vimrc"
 elif [ -e ~/.vimrc ]; then
   echo "[bad] .vimrc exists!"
-  
+
   rm ~/.vimrc
   ln -s ~/scripts/.vimrc ~/.vimrc
   echo "[ok] Created .vimrc sym link"
@@ -83,7 +72,7 @@ if [ -L ~/.gitconfig ]; then
   echo "[ok] .gitconfig"
 elif [ -e ~/.gitconfig ]; then
   echo "[bad] .gitconfig exists!"
-  
+
   rm ~/.gitconfig
   ln -s ~/scripts/.gitconfig ~/.gitconfig
   echo "[ok] Created ~/.gitconfig sym link"
@@ -104,6 +93,19 @@ elif [ -e ~/.gitignore_global ]; then
 else
   ln -s ~/scripts/.gitignore_global ~/.gitignore_global
   echo "[ok] Created ~/.gitignore_global sym link"
+fi
+
+# Sym link .gitconfig
+if [ -L ~/.tmux.conf ]; then
+  echo "[ok] .tmux.conf"
+elif [ -e ~/.tmux.conf ]; then
+  echo "[bad] .tmux.conf exists!"
+  rm ~/.tmux.conf
+  ln -s ~/scripts/.tmux.conf ~/.tmux.conf
+  echo "[ok] Created ~/.gitconfig sym link"
+else
+  ln -s ~/scripts/.tmux.conf ~/.tmux.conf
+  echo "[ok] Created ~/.gitconfig sym link"
 fi
 
 # Sym link .psqlrc
@@ -130,7 +132,7 @@ else
   echo "[ok] Created ~/.zshrc sym link"
 fi
 
-## setup zsh now --- 
+## setup zsh now ---
 zsh_custom=$homedir/.oh-my-zsh/custom;
 
 if [ -d "$homedir/.oh-my-zsh" ]; then
