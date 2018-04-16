@@ -150,3 +150,6 @@ else
   git clone git://github.com/zsh-users/zsh-autosuggestions "$zsh_custom/plugins/zsh-autosuggestions";
   (cd $zsh_custom/plugins/zsh-autosuggestions; git pull-all;)
 fi
+
+# pull latest version of pip into ~/bin
+curl -O -k "https://bootstrap.pypa.io/get-pip.py" ~/bin/get-pip.py

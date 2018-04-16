@@ -110,7 +110,7 @@
 
 #[diff]
 #tool = araxis
-#
+
 #[merge]
 #tool = araxis
 
@@ -120,4 +120,6 @@
 [merge]
 	tool = bc3
 [diff]
-    tool = bc3
+	tool = bc3
+[mergetool "bc3"]
+	trustExitCode = true

@@ -9,7 +9,7 @@ export PATH="/usr/local/sbin:$PATH"
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="bureau"
+ZSH_THEME="dogenpunk"
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -97,6 +97,11 @@ alias ack-grep='ack'
 
 export ANSIBLE_HOST_KEY_CHECKING=False
 
+## java stuff
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-9.0.1.jdk/Contents/Home
+export JAVA_TOOL_OPTIONS="-Djava.net.preferIPv4Stack=false"
+export PATH="$PATH:$JAVA_HOME/bin"
+
 export GOPATH=~/go
 export GOBIN=""
 export PATH=$PATH:/usr/local/go/bin
@@ -106,9 +111,10 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 alias dc='docker rmi -f $(docker images | grep "<none>" | awk "{print \$3}")'
 alias get_dns="cat ~/mywork/dnszones/netspot.com.au | sort -nd | grep AAAA | grep -v ';'"
 alias get_hosts="cat ~/hosts/all-hosts.dyn"
+alias updatedb='sudo gupdatedb'
+alias locate='glocate'
 
-
-##python force to v3 
+##python force to v3
 #alias python='python3'
 alias py='python3'
 export PATH=$PATH:~/Library/Python/3.6/bin
@@ -116,18 +122,14 @@ export PATH=$PATH:~/Library/Python/3.6/bin
 #add bin in home to path
 export PATH=$PATH:~/bin
 
-#postgres stuff 
+#postgres stuff
 alias psql='PAGER="less -SF" psql'
 ## was causing a "bad option -t"
 #source <(kubectl completion bash)
 
-#git suff 
+#git suff
 export PATH=$PATH:/Applications/Araxis\ Merge.app/Contents/Utilities
 export PATH="/usr/local/opt/php71/bin:$PATH"
-
-#java stuff 
- export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home"
- export PATH="$PATH:$JAVA_HOME/bin"
 
 if foo --version >/dev/null 2>&1; then
     eval "$(rbenv init -)"
@@ -145,3 +147,13 @@ fi
 # tabtab source for sls package
 # uninstall by removing these lines or running `tabtab uninstall sls`
 [[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/dbinney/Downloads/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/dbinney/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/dbinney/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/dbinney/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
+source scripts/.iterm2_shell_integration.zsh
+
+

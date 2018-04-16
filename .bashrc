@@ -1,6 +1,6 @@
 if [ "$TERM" != "dumb" ]
 then
-        if [ -x /bin/zsh ]
+        if [ -x /usr/local/bin/zsh ]
         then
                 SHELL=/bin/zsh
                 export SHELL
