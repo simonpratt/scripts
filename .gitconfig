@@ -1,6 +1,6 @@
 [user]
 	name = David Binney
-	email = david.binney@blackboard.com
+	email = david@sine.com
 
 [color]
 	diff = auto
@@ -83,9 +83,6 @@
     submodule-branches = "submodule foreach --quiet 'echo \"$(git rev-parse --abbrev-ref HEAD)    => $name\"'"
     permission-reset = !git diff -p -R | grep -E \"^(diff|(old|new) mode)\" | git apply
 
-[status]
-#    submodulesummary = 1
-
 [http]
     # see http://stackoverflow.com/questions/2702731/git-fails-when-pushing-commit-to-github
 	postBuffer = 524288000
@@ -123,3 +120,14 @@
 	tool = bc3
 [mergetool "bc3"]
 	trustExitCode = true
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
