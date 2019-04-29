@@ -10,7 +10,9 @@
 \pset null 'NULL'
 
 -- Custom prompt so you always know where you are
-\set PROMPT1 '%n@%M:%> [%/] $ '
+--\set PROMPT1 '%n@%M:%> [%/] $ '
+--\set PROMPT1 '%[%033[1m%]%m %n@%/%R%[%033[0m%]%# '
+\set PROMPT1 '%M:%[%033[1;31m%]%>%[%033[0m%] %n@%/%R%#%x '
 \set PROMPT2 ''
 
 -- TODO color me up a bit?
@@ -30,9 +32,9 @@
 -- \pset columns 1
 
 -- Always use the pager
-\set pager always
+--\set pager always
+\x auto
 
--- TODO Need to make a custom wrapper for this that handles
--- mdl_ prefix mapping
--- \setenv PSQL_EDITOR
+\set VERBOSITY verbose
 
+\set QUIET 0
