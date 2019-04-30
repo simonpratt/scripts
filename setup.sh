@@ -151,5 +151,26 @@ else
   (cd $zsh_custom/plugins/zsh-autosuggestions; git pull-all;)
 fi
 
+## ## copy themes over and clone
+if [ -d $zsh_custom/themes/powerlevel9k ]; then
+  echo '[ok] powerlevel9k exists'
+  (cd $zsh_custom/themes/powerlevel9k; git pull-all;)
+else
+  mkdir -p $zsh_custom/themes/powerlevel9k;
+  echo "[bad] creating folder!"
+  git clone git@github.com:bhilburn/powerlevel9k.git "$zsh_custom/themes/powerlevel9k";
+  (cd $zsh_custom/themes/powerlevel9k; git pull-all;)
+fi
+
+if [ -L $zsh_custom/themes/xxf.zsh-theme ]; then
+  echo "[ok] xxf.zsh-theme"
+elif [ -e $zsh_custom/themes/xxf.zsh-theme ]; then
+  echo "[bad] xxf.zsh-theme exists!"
+else
+  ln -s ~/scripts/xxf.zsh-theme $zsh_custom/themes/xxf.zsh-theme
+  echo "[ok] Created xxf.zsh-theme sym link"
+fi
+
 # pull latest version of pip into ~/bin
-curl -O -k "https://bootstrap.pypa.io/get-pip.py" ~/bin/get-pip.py
+curl -o ~/bin/get-pip.py -k "https://bootstrap.pypa.io/get-pip.py"
+
