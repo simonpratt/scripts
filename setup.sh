@@ -179,5 +179,5 @@ find ~/scripts/oh-my-zsh/themes/ -type f | while read line; do
 done
 
 # pull latest version of pip into ~/bin
-curl -o ~/bin/get-pip.py -k "https://bootstrap.pypa.io/get-pip.py"
+#curl -s -o ~/bin/get-pip.py -k "https://bootstrap.pypa.io/get-pip.py"
 
