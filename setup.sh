@@ -162,14 +162,21 @@ else
   (cd $zsh_custom/themes/powerlevel9k; git pull-all;)
 fi
 
-if [ -L $zsh_custom/themes/xxf.zsh-theme ]; then
-  echo "[ok] xxf.zsh-theme"
-elif [ -e $zsh_custom/themes/xxf.zsh-theme ]; then
-  echo "[bad] xxf.zsh-theme exists!"
-else
-  ln -s ~/scripts/xxf.zsh-theme $zsh_custom/themes/xxf.zsh-theme
-  echo "[ok] Created xxf.zsh-theme sym link"
-fi
+find ~/scripts/oh-my-zsh/themes/ -type f | while read line; do
+
+  source_dir=`dirname "$line"`
+  file_name=`basename "$line"`
+
+  if [ -L $zsh_custom/themes/$file_name ]; then
+    echo "[ok] $file_name"
+  elif [ -e $zsh_custom/themes/$file_name ]; then
+    echo "[bad] $file_name exists!"
+  else
+    ln -s $line $zsh_custom/themes/$file_name
+    echo "[ok] Created $file_name sym link"
+  fi
+
+done
 
 # pull latest version of pip into ~/bin
 curl -o ~/bin/get-pip.py -k "https://bootstrap.pypa.io/get-pip.py"
