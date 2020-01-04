@@ -105,29 +105,14 @@
 [status]
     submoduleSummary = true
 
-#[diff]
-#tool = araxis
 
-#[merge]
-#tool = araxis
-
-#beyone compare 
-[mergetool]
-	bc3 = trustExitCode
-[merge]
-	tool = bc3
-[diff]
-	tool = bc3
-[mergetool "bc3"]
-	trustExitCode = true
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+
+[diff]
+	tool = opendiff
+[merge]
+	tool = opendiff
