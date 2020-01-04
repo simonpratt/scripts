@@ -1,15 +1,35 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:$HOME/scripts:$PATH
+export PATH=$HOME/bin:$HOME/scripts$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
-export PATH="/usr/local/bin:$PATH"
-export PATH="/usr/local/sbin:$PATH"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="dogenpunk"
+#ZSH_THEME="dogenpunk"
+#ZSH_THEME="xxf"
+ZSH_THEME="powerlevel9k/powerlevel9k"
+#ZSH_THEME="edvardm"
+
+## POWERLEVEL9K SETTINGS ##
+POWERLEVEL9K_STATUS_VERBOSE=false
+POWERLEVEL9K_STATUS_OK_IN_NON_VERBOSE=true
+POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+#POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=''
+#POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%K{white}%F{black} \UE12E `date +%T` %f%k%F{white}%f "
+#POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
+#POWERLEVEL9K_CUSTOM_INTERNET_SIGNAL="zsh_internet_signal"
+#POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(custom_internet_signal os_icon  dir vcs)
+#POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status zsh_showStatus)
+#POWERLEVEL9K_OS_ICON_BACKGROUND="white"
+#POWERLEVEL9K_OS_ICON_FOREGROUND="blue"
+#POWERLEVEL9K_DIR_HOME_FOREGROUND="white"
+#POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND="white"
+#POWERLEVEL9K_DIR_DEFAULT_FOREGROUND="white"
+#POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
+POWERLEVEL9K_MODE='nerdfont-complete'
+
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -52,7 +72,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(mysql git colored-man-pages compleat history tmuxinator zsh-autosuggestions)
+plugins=(postgres mysql git colored-man-pages compleat history kubernetes zsh-autosuggestions)
 
 
 source $ZSH/oh-my-zsh.sh
@@ -63,97 +83,107 @@ source $ZSH/oh-my-zsh.sh
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=black,bold'
 export HIST_IGNORE_ALL_DUPS
 
-# User configuration
 
-# export MANPATH="/usr/local/man:$MANPATH"
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+# ------------ end ohmyzsh stuff --------------------
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
 
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+#ssh agent start
+#if [[ $(hostname -s) =~ .*david.* ]]; then
+#	eval "$(ssh-agent -s)"
+#	ssh-add ~/.ssh/id_rsa ~/.ssh/my_id_rsa ~/.ssh/*.pem
+#fi
+
+
+
+# generic aliases
+alias lsn='find . -cmin -30'
+alias myip='curl https://ipinfo.io/ip'
 alias {ack,ak}='ack'
 alias ack-grep='ack'
-
-
-export ANSIBLE_HOST_KEY_CHECKING=False
-
-## java stuff
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-9.0.1.jdk/Contents/Home
-export JAVA_TOOL_OPTIONS="-Djava.net.preferIPv4Stack=false"
-export PATH="$PATH:$JAVA_HOME/bin"
-
-export GOPATH=~/go
-export GOBIN=""
-export PATH=$PATH:/usr/local/go/bin
-export PATH=$PATH:$GOPATH/bin
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-alias dc='docker rmi -f $(docker images | grep "<none>" | awk "{print \$3}")'
 alias get_dns="cat ~/mywork/dnszones/netspot.com.au | sort -nd | grep AAAA | grep -v ';'"
 alias get_hosts="cat ~/hosts/all-hosts.dyn"
 alias updatedb='sudo gupdatedb'
-alias locate='glocate'
+alias dlt="find ~/Downloads -type f -newermt '2 day ago' -print0 | xargs -0  ls -oAHd"
 
-##python force to v3
+# docker stuff 
+alias dc='docker rmi -f $(docker images | grep "<none>" | awk "{print \$3}")'
+
+# postgres stuff
+alias psql='PAGER="less -SF" psql'
+
+# ansible stuff
+export ANSIBLE_HOST_KEY_CHECKING=False
+
+# sqlite stuff
+export PATH="/usr/local/opt/sqlite/bin:$PATH"
+export LDFLAGS="-L/usr/local/opt/sqlite/lib"
+export CPPFLAGS="-I/usr/local/opt/sqlite/include"
+
+## For pkg-config to find sqlite you may need to set:
+export PKG_CONFIG_PATH="/usr/local/opt/sqlite/lib/pkgconfig"
+
+# groovy stuff
+export GROOVY_TURN_OFF_JAVA_WARNINGS=true
+
+#node stuff
+export NVM_DIR="$HOME/.nvm"
+  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+
+
+## java stuff
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-10.0.1.jdk/Contents/Home
+export JAVA_TOOL_OPTIONS="-Djava.net.preferIPv4Stack=false"
+export PATH="$PATH:$JAVA_HOME/bin"
+export JVM_ARGS="-Xms512m -Xmx512m"
+export HEAP="-Xms1g -Xmx1g -XX:MaxMetaspaceSize=256m"
+
+
+
+# kubes stuff
+export KUBECONFIG=~/.kube/config:~/.kube/adl-rancher-01
+alias ku="kubectl"
+alias kup="kubectl get pods -o wide"
+alias kua="kubectl get all --all-namespaces"
+
+##python stuff
 #alias python='python3'
 alias py='python3'
-export PATH=$PATH:~/Library/Python/3.6/bin
+export PATH=$PATH:~/Library/Python/3.7/bin
+export PIPENV_VENV_IN_PROJECT=true
 
-#add bin in home to path
-export PATH=$PATH:~/bin
 
-#postgres stuff
-alias psql='PAGER="less -SF" psql'
-## was causing a "bad option -t"
-#source <(kubectl completion bash)
+## homebrew recomendations
+export PATH="/usr/local/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
 
-#git suff
-export PATH=$PATH:/Applications/Araxis\ Merge.app/Contents/Utilities
-export PATH="/usr/local/opt/php71/bin:$PATH"
+# aws stuff
 
-if foo --version >/dev/null 2>&1; then
-    eval "$(rbenv init -)"
-fi
 
-#ssh agent start
-if [[ $(hostname -s) =~ dhcp-.* ]]; then
-	eval "$(ssh-agent -s)"
-	ssh-add ~/.ssh/id_rsa
-fi
+ack-ssm-env() {
+  params=$(aws ssm get-parameters-by-path --with-decryption --recursive --path $1 | jq -r '.Parameters[] | (.Name + " " + .Value)' | sort -u)
+  if [ -z "$2" ]
+    then
+      echo "filtering none"
+      echo $params
+  else
+    echo "filtering $2"
+    echo $params | ack $2
+  fi
+}
 
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
+# google cloud stuff
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/dbinney/Downloads/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/dbinney/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '~/google-cloud-sdk/path.zsh.inc' ]; then . '~/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/dbinney/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/dbinney/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f '~/google-cloud-sdk/completion.zsh.inc' ]; then . '~/google-cloud-sdk/completion.zsh.inc'; fi
 
-source scripts/.iterm2_shell_integration.zsh
+# mac specific stuff 
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 
