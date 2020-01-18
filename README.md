@@ -23,7 +23,7 @@ When you run the script below it will do the following
 ```bash
 # in your home dir clone the scripts down
 cd ~
-git clone git@github.com:donkeyx/scripts.git
+git clone git@github.com:simonpratt/scripts.git
 
 # now they have been downloaded you can run the install script
 ./scripts/setup.sh

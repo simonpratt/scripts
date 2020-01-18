@@ -60,10 +60,10 @@ elif [ -e ~/.vimrc ]; then
   echo "[bad] .vimrc exists!"
 
   rm ~/.vimrc
-  ln -s ~/scripts/sym-link.vimrc ~/.vimrc
+  ln -s ~/scripts/sym-link/.vimrc ~/.vimrc
   echo "[ok] Created .vimrc sym link"
 else
-  ln -s ~/scripts/sym-link.vimrc ~/.vimrc
+  ln -s ~/scripts/sym-link/.vimrc ~/.vimrc
   echo "[ok] Created .vimrc sym link"
 fi
 
@@ -74,10 +74,10 @@ elif [ -e ~/.gitconfig ]; then
   echo "[bad] .gitconfig exists!"
 
   rm ~/.gitconfig
-  ln -s ~/scripts/sym-link.gitconfig ~/.gitconfig
+  ln -s ~/scripts/sym-link/.gitconfig ~/.gitconfig
   echo "[ok] Created ~/.gitconfig sym link"
 else
-  ln -s ~/scripts/sym-link.gitconfig ~/.gitconfig
+  ln -s ~/scripts/sym-link/.gitconfig ~/.gitconfig
   echo "[ok] Created ~/.gitconfig sym link"
 fi
 
@@ -88,10 +88,10 @@ elif [ -e ~/.gitignore_global ]; then
   echo "[bad] .gitignore_global exists!"
 
   rm ~/.gitignore_global
-  ln -s ~/scripts/sym-link.gitignore_global ~/.gitignore_global
+  ln -s ~/scripts/sym-link/.gitignore_global ~/.gitignore_global
   echo "[ok] Created ~/.gitignore_global sym link"
 else
-  ln -s ~/scripts/sym-link.gitignore_global ~/.gitignore_global
+  ln -s ~/scripts/sym-link/.gitignore_global ~/.gitignore_global
   echo "[ok] Created ~/.gitignore_global sym link"
 fi
 
@@ -101,10 +101,10 @@ if [ -L ~/.tmux.conf ]; then
 elif [ -e ~/.tmux.conf ]; then
   echo "[bad] .tmux.conf exists!"
   rm ~/.tmux.conf
-  ln -s ~/scripts/sym-link.tmux.conf ~/.tmux.conf
+  ln -s ~/scripts/sym-link/.tmux.conf ~/.tmux.conf
   echo "[ok] Created ~/.gitconfig sym link"
 else
-  ln -s ~/scripts/sym-link.tmux.conf ~/.tmux.conf
+  ln -s ~/scripts/sym-link/.tmux.conf ~/.tmux.conf
   echo "[ok] Created ~/.gitconfig sym link"
 fi
 
@@ -115,10 +115,10 @@ elif [ -e ~/.psqlrc ]; then
   echo "[bad] .psqlrc exists!"
 
   rm ~/.psqlrc
-  ln -s ~/scripts/sym-link.psqlrc ~/.psqlrc
+  ln -s ~/scripts/sym-link/.psqlrc ~/.psqlrc
   echo "[ok] Created ~/.psqlrc sym link"
 else
-  ln -s ~/scripts/sym-link.psqlrc ~/.psqlrc
+  ln -s ~/scripts/sym-link/.psqlrc ~/.psqlrc
   echo "[ok] Created ~/.psqlrc sym link"
 fi
 
@@ -128,7 +128,7 @@ if [ -L ~/.zshrc ]; then
 elif [ -e ~/.zshrc ]; then
   echo "[bad] .zshrc exists!"
 else
-  ln -s ~/scripts/sym-link.zshrc ~/.zshrc
+  ln -s ~/scripts/sym-link/.zshrc ~/.zshrc
   echo "[ok] Created ~/.zshrc sym link"
 fi
 
