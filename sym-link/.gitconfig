@@ -1,7 +1,3 @@
-[user]
-	name = David Binney
-	email = david@sine.com
-
 [color]
 	diff = auto
 	ui = true

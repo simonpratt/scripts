@@ -34,7 +34,7 @@ if [ -L ~/bin/diff-highlight ]; then
 elif [ -e ~/bin/diff-highlight ]; then
   echo "[bad] diff-highlight exists!"
 else
-  ln -s ~/scripts/diff-highlight ~/bin/diff-highlight
+  ln -s ~/scripts/sym-link/diff-highlight ~/bin/diff-highlight
   echo "[ok] Created diff-highlight sym link"
 fi
 
@@ -60,10 +60,10 @@ elif [ -e ~/.vimrc ]; then
   echo "[bad] .vimrc exists!"
 
   rm ~/.vimrc
-  ln -s ~/scripts/.vimrc ~/.vimrc
+  ln -s ~/scripts/sym-link.vimrc ~/.vimrc
   echo "[ok] Created .vimrc sym link"
 else
-  ln -s ~/scripts/.vimrc ~/.vimrc
+  ln -s ~/scripts/sym-link.vimrc ~/.vimrc
   echo "[ok] Created .vimrc sym link"
 fi
 
@@ -74,37 +74,37 @@ elif [ -e ~/.gitconfig ]; then
   echo "[bad] .gitconfig exists!"
 
   rm ~/.gitconfig
-  ln -s ~/scripts/.gitconfig ~/.gitconfig
+  ln -s ~/scripts/sym-link.gitconfig ~/.gitconfig
   echo "[ok] Created ~/.gitconfig sym link"
 else
-  ln -s ~/scripts/.gitconfig ~/.gitconfig
+  ln -s ~/scripts/sym-link.gitconfig ~/.gitconfig
   echo "[ok] Created ~/.gitconfig sym link"
 fi
 
-# Sym link .gitconfig
+# Sym link .gitignore_global
 if [ -L ~/.gitignore_global ]; then
   echo "[ok] .gitignore_global"
 elif [ -e ~/.gitignore_global ]; then
   echo "[bad] .gitignore_global exists!"
 
   rm ~/.gitignore_global
-  ln -s ~/scripts/.gitignore_global ~/.gitignore_global
+  ln -s ~/scripts/sym-link.gitignore_global ~/.gitignore_global
   echo "[ok] Created ~/.gitignore_global sym link"
 else
-  ln -s ~/scripts/.gitignore_global ~/.gitignore_global
+  ln -s ~/scripts/sym-link.gitignore_global ~/.gitignore_global
   echo "[ok] Created ~/.gitignore_global sym link"
 fi
 
-# Sym link .gitconfig
+# Sym link .tmux.conf
 if [ -L ~/.tmux.conf ]; then
   echo "[ok] .tmux.conf"
 elif [ -e ~/.tmux.conf ]; then
   echo "[bad] .tmux.conf exists!"
   rm ~/.tmux.conf
-  ln -s ~/scripts/.tmux.conf ~/.tmux.conf
+  ln -s ~/scripts/sym-link.tmux.conf ~/.tmux.conf
   echo "[ok] Created ~/.gitconfig sym link"
 else
-  ln -s ~/scripts/.tmux.conf ~/.tmux.conf
+  ln -s ~/scripts/sym-link.tmux.conf ~/.tmux.conf
   echo "[ok] Created ~/.gitconfig sym link"
 fi
 
@@ -115,10 +115,10 @@ elif [ -e ~/.psqlrc ]; then
   echo "[bad] .psqlrc exists!"
 
   rm ~/.psqlrc
-  ln -s ~/scripts/.psqlrc ~/.psqlrc
+  ln -s ~/scripts/sym-link.psqlrc ~/.psqlrc
   echo "[ok] Created ~/.psqlrc sym link"
 else
-  ln -s ~/scripts/.psqlrc ~/.psqlrc
+  ln -s ~/scripts/sym-link.psqlrc ~/.psqlrc
   echo "[ok] Created ~/.psqlrc sym link"
 fi
 
@@ -128,7 +128,7 @@ if [ -L ~/.zshrc ]; then
 elif [ -e ~/.zshrc ]; then
   echo "[bad] .zshrc exists!"
 else
-  ln -s ~/scripts/.zshrc ~/.zshrc
+  ln -s ~/scripts/sym-link.zshrc ~/.zshrc
   echo "[ok] Created ~/.zshrc sym link"
 fi
 
@@ -177,7 +177,3 @@ find ~/scripts/oh-my-zsh/themes/ -type f | while read line; do
   fi
 
 done
-
-# pull latest version of pip into ~/bin
-#curl -s -o ~/bin/get-pip.py -k "https://bootstrap.pypa.io/get-pip.py"
-

@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:$HOME/scripts:$PATH
+export PATH=$HOME/bin:$HOME/scripts/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
@@ -108,7 +108,7 @@ alias get_hosts="cat ~/hosts/all-hosts.dyn"
 alias updatedb='sudo gupdatedb'
 alias dlt="find ~/Downloads -type f -newermt '2 day ago' -print0 | xargs -0  ls -oAHd"
 
-# docker stuff 
+# docker stuff
 alias dc='docker rmi -f $(docker images | grep "<none>" | awk "{print \$3}")'
 
 # postgres stuff
@@ -182,7 +182,7 @@ if [ -f '~/google-cloud-sdk/path.zsh.inc' ]; then . '~/google-cloud-sdk/path.zsh
 # The next line enables shell command completion for gcloud.
 if [ -f '~/google-cloud-sdk/completion.zsh.inc' ]; then . '~/google-cloud-sdk/completion.zsh.inc'; fi
 
-# mac specific stuff 
+# mac specific stuff
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
